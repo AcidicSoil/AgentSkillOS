@@ -2,6 +2,10 @@
   <img src="assets/logo.png" alt="AgentSkillOS" height="140">
 </p>
 
+<p align="center">
+  English | <a href="README_zh.md">简体中文</a>
+</p>
+
 <h2 align="center">
   Build your agent from 90,000+ skills via skill <br><ins>RETRIEVAL</ins> & <ins>ORCHESTRATION</ins><br>
   <br style="line-height:0.1;">
@@ -46,6 +50,9 @@
   </a>
 </p>
 
+<p align="center">
+  <img src="assets/workflow_en.png" alt="Skill Workflow Overview" style="zoom:90%;" height="454">
+</p>
 
 
  ## 🌟 Highlights

@@ -18,7 +18,7 @@
   <a href="https://ynulihao.github.io/AgentSkillOS/"><img src="https://img.shields.io/badge/🌐_Main_Page-AgentSkillOS-purple" alt="Main Page"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/Paper-Coming%20Soon-lightgrey" alt="Paper">
+  <a href="assets/AgentSkillOS.pdf"><img src="https://img.shields.io/badge/Paper-PDF-red" alt="Paper"></a>
 </p>
 
 ## 🌐 Overview
@@ -231,7 +231,7 @@ If you find AgentSKillOS useful, consider citing our paper:
 @article{li2026agentskillos,
   title={Leveraging, Managing, and Scaling the Agent Skill Ecosystem},
   author={Li, Hao and Mu, Chunjiang and Chen, Jianhao and Ren, Siyue and Cui, Zhiyao and Zhang, Yiqun and Bai, Lei and Hu, Shuyue},
-  journal={Coming Soon},
+  journal={Preprint},
   year={2026}
 }
 ```

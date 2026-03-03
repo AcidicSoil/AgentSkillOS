@@ -234,7 +234,7 @@ EMBEDDING_API_KEY=your-key
 
 If you find AgentSKillOS useful, consider citing our paper:
 ```bibtex
-@misc{li2026organizingorchestratingbenchmarkingagent,
+@article{li2026organizingorchestratingbenchmarkingagent,
       title={Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale},
       author={Hao Li and Chunjiang Mu and Jianhao Chen and Siyue Ren and Zhiyao Cui and Yiqun Zhang and Lei Bai and Shuyue Hu},
       year={2026},

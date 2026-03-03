@@ -17,7 +17,7 @@
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
   <a href="https://arxiv.org/abs/2603.02176"><img src="https://img.shields.io/badge/arXiv-2603.02176-b31b1b.svg" alt="arXiv"></a>
-  <a href="assets/AgentSkillOS.pdf"><img src="https://img.shields.io/badge/Paper-PDF-red" alt="Paper"></a>
+
 </p>
 
 > **最新动态**

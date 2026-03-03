@@ -234,10 +234,13 @@ EMBEDDING_API_KEY=your-key
 
 If you find AgentSKillOS useful, consider citing our paper:
 ```bibtex
-@article{li2026agentskillos,
-  title={Leveraging, Managing, and Scaling the Agent Skill Ecosystem},
-  author={Li, Hao and Mu, Chunjiang and Chen, Jianhao and Ren, Siyue and Cui, Zhiyao and Zhang, Yiqun and Bai, Lei and Hu, Shuyue},
-  journal={arXiv preprint arXiv:2603.02176},
-  year={2026}
+@misc{li2026organizingorchestratingbenchmarkingagent,
+      title={Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale},
+      author={Hao Li and Chunjiang Mu and Jianhao Chen and Siyue Ren and Zhiyao Cui and Yiqun Zhang and Lei Bai and Shuyue Hu},
+      year={2026},
+      eprint={2603.02176},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2603.02176},
 }
 ```

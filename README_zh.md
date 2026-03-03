@@ -16,8 +16,14 @@
   <a href="https://ynulihao.github.io/AgentSkillOS/"><img src="https://img.shields.io/badge/🌐_Main_Page-AgentSkillOS-purple" alt="Main Page"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
+  <a href="https://arxiv.org/abs/2603.02176"><img src="https://img.shields.io/badge/arXiv-2603.02176-b31b1b.svg" alt="arXiv"></a>
   <a href="assets/AgentSkillOS.pdf"><img src="https://img.shields.io/badge/Paper-PDF-red" alt="Paper"></a>
 </p>
+
+> **最新动态**
+> - [2026/03] 论文已上线 [Arxiv](https://arxiv.org/abs/2603.02176)！
+> - [2026/03] **Benchmark** 即将发布 — 涵盖 5 大类别的 30 个多格式创意任务，采用 Bradley-Terry 成对评测。
+> - [2026/03] **模块化架构**升级即将上线 — 可插拔的检索/编排模块等新功能。
 
 ## 🌐 概述
 
@@ -229,7 +235,7 @@ EMBEDDING_API_KEY=your-key
 @article{li2026agentskillos,
   title={Leveraging, Managing, and Scaling the Agent Skill Ecosystem},
   author={Li, Hao and Mu, Chunjiang and Chen, Jianhao and Ren, Siyue and Cui, Zhiyao and Zhang, Yiqun and Bai, Lei and Hu, Shuyue},
-  journal={Preprint},
+  journal={arXiv preprint arXiv:2603.02176},
   year={2026}
 }
 ```

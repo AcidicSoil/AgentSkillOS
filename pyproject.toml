@@ -18,11 +18,12 @@ dependencies = [
     "rich>=13.0.0",
     "fastapi>=0.100.0",
     "uvicorn>=0.20.0",
-    # skill_retriever dependencies
+    # manager dependencies
     "chromadb>=0.4.0",
     "litellm>=1.0.0",
     "python-dotenv>=1.0.0",
     "pyyaml>=6.0.0",
+    "loguru>=0.7.0",
 ]
 
 [project.scripts]
@@ -35,7 +36,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src", "benchmark"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

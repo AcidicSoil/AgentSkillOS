@@ -184,6 +184,7 @@ bak/
 tools/filter/cache/
 data/*
 !data/skill_seeds/
+!data/capability_trees/
 CLAUDE.md
 runs/
 .claude/
@@ -194,3 +195,17 @@ doc_image/
 package-lock.json
 package.json
 backup_doc/
+.chroma/
+config/claude-profiles.yaml
+paper/
+paper_analysis/output/
+data/capability_trees/tree_skill_10000.yaml
+data/capability_trees/tree_200.yaml
+data/capability_trees/tree_skill_1000.yaml
+
+
+paper_analysis/
+scripts/cleanup-affected-tasks.sh
+scripts/cleanup-rerun-checkpoints.sh
+scripts/rerun-affected-tasks.sh
+scripts/generate_tree_gifs.py

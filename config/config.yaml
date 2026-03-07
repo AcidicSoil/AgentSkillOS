@@ -4,109 +4,98 @@
 # =============================================================================
 
 # =============================================================================
-# Skill Configuration
+# Global Configuration
 # =============================================================================
 
 # Skill group selection
-# (Which skill set to use for search)
-# Options: skill_seeds (~50 curated, recommended), top500, top1000
-skill_group: skill_seeds
+# Options: skill_seeds (~50 curated, recommended), top500, top1000, skill_200
+skill_group: skill_200
 
-# Maximum skills count
-# (Max skills to select during auto search)
-# Recommended: 5-20, more skills = slower but more comprehensive
-max_skills: 10
+# Maximum skills count (max skills to select during auto search)
+max_skills: 8
 
-# Skill deduplication
-# (Enable skill pruning to remove similar skills)
-# true: Reduce redundancy, improve efficiency
-# false: Keep all matched skills
+# Skill deduplication (remove similar skills)
 prune_enabled: true
 
-# =============================================================================
-# Server Configuration
-# =============================================================================
-
 # Web UI port
-# (Port number for the web interface)
 port: 8765
 
-# =============================================================================
-# Tree Building Configuration
-# =============================================================================
-
-# Branching factor
-# (Max child branches per node in capability tree)
-# Recommended: 5-12, affects tree width and depth
-branching_factor: 7
-
-# Parallel build workers
-# (Max threads for building capability tree)
-# Recommended: 2-4x CPU cores
-tree_build_max_workers: 64
-
-# LLM response caching
-# (Cache LLM responses during tree build to avoid duplicate calls)
-# true: Save API costs, speed up repeated builds
-tree_build_caching: true
-
-# LLM call retries
-# (Retry count for network errors or timeouts)
-tree_build_num_retries: 3
-
-# LLM call timeout
-# (Timeout for single LLM call, in seconds)
-tree_build_timeout: 600.0
-
-# Max tree depth
-# (Maximum depth of capability tree)
-# Prevents infinite recursion, recommended: 4-8
-max_depth: 6
+# Module Selection (Plugin System)
+# Manager: skill indexing + retrieval implementation
+# Options: tree | vector | direct (direct requires orchestrator: free-style)
+manager: tree
+# Orchestrator: skill execution orchestration (single source of truth for execution mode)
+# Options: dag | free-style | no-skill
+orchestrator: dag
 
 # =============================================================================
-# Search Configuration
+# Shared Defaults
 # =============================================================================
-
-# Max parallel searches
-# (Number of concurrent search branches)
-search_max_parallel: 5
-
-# LLM temperature
-# (Controls LLM output randomness)
-# Range: 0.0-1.0, lower = more deterministic, higher = more creative
-search_temperature: 0.3
-
-# Search timeout
-# (Timeout for search operations, in seconds)
-search_timeout: 600.0
-
-# Search response caching
-# (Cache LLM responses during search)
-search_caching: true
+core:
+  retry:
+    base_delay: 1.0
+    max_retries: 3
 
 # =============================================================================
-# Orchestrator Configuration
+# Manager Plugins
 # =============================================================================
+managers:
+  direct: {}  # No configuration — directly provides all skills to agent
 
-# Node execution timeout
-# (Max execution time for single skill node, in seconds)
-# 1800 = 30 minutes, suitable for complex tasks
-node_timeout: 1800.0
+  vector:
+    top_k: 10
+    collection_name: skills
+    build:
+      batch_size: 100
+      max_workers: 4
+      caching: true
 
-# Max concurrent nodes
-# (Number of skill nodes executing simultaneously)
-# Note: Too high may trigger API rate limits
-max_concurrent: 6
+  tree:
+    branching_factor: 7
+    max_depth: 6
+    build:
+      max_workers: 4
+      caching: true
+      num_retries: 3
+      timeout: 600.0
+      deterministic_prompts: true
+      discovery_seed: 42
+      prompt_fingerprint_version: v1
+      cache_observability: true
+    search:
+      max_parallel: 5
+      temperature: 0.3
+      timeout: 600.0
+      caching: true
+    layering:
+      mode: disabled         # disabled | directory | install-count
+      dormant_skills_dir: "" # for mode=directory, relative to project root
+      active_threshold: 50   # for mode=install-count
+      max_dormant_suggestions: 10
+      installs_data_path: tools/skills_downloader_from_skillssh/skills_scraped.json
+      dormant_search:
+        keyword_enabled: true
+        cache_ttl: 31536000
 
 # =============================================================================
-# Retry Configuration
+# Orchestrator Plugins
 # =============================================================================
-
-# Retry base delay
-# (Wait time before first retry, in seconds)
-# Subsequent retries grow exponentially
-retry_base_delay: 1.0
-
-# Max retries
-# (Max retry attempts for temporary errors)
-max_retries: 3
+orchestrators:
+  dag:
+    node_timeout: 3600.0
+    max_concurrent: 6
+    batch_auto_plan: 0  # Plan selection for batch mode (0=quality, 1=speed, 2=simplicity)
+    runtime:
+      model: sonnet
+      execution_timeout: 0.0
+      summary_max_length: 500
+  free-style:
+    runtime:
+      model: sonnet
+      execution_timeout: 0.0
+      summary_max_length: 500
+  no-skill:
+    runtime:
+      model: sonnet
+      execution_timeout: 0.0
+      summary_max_length: 500

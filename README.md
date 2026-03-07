@@ -7,9 +7,9 @@
 </p>
 
 <h2 align="center">
-  Build your agent from 90,000+ skills via skill <br><ins>RETRIEVAL</ins> & <ins>ORCHESTRATION</ins><br>
+  Build your agent from 200,000+ skills via skill <br><ins>RETRIEVAL</ins> & <ins>ORCHESTRATION</ins><br>
   <br style="line-height:0.1;">
-  通过技能<ins>检索</ins>与<ins>编排</ins>，从 90,000+ 技能中构建Agent
+  通过技能<ins>检索</ins>与<ins>编排</ins>，从 200,000+ 技能中构建Agent
 </h2>
 
 
@@ -22,20 +22,23 @@
 
 </p>
 
+<p align="center">
+  <a href="#️-method"><img src="https://img.shields.io/badge/🏗️_Method-blue?style=for-the-badge" alt="Method"></a>
+  <a href="#-benchmark"><img src="https://img.shields.io/badge/📈_Benchmark-green?style=for-the-badge" alt="Benchmark"></a>
+  <a href="#-examples"><img src="https://img.shields.io/badge/💡_Examples-orange?style=for-the-badge" alt="Examples"></a>
+  <a href="#-how-to-use"><img src="https://img.shields.io/badge/🚀_How_to_Use-red?style=for-the-badge" alt="How to Use"></a>
+</p>
+
 > **News**
-> - [2026/03] Paper is on [Arxiv](https://arxiv.org/abs/2603.02176)!
-> - [2026/03] **Benchmark** coming soon — 30 multi-format creative tasks across 5 categories with pairwise Bradley-Terry evaluation.
-> - [2026/03] **Modular Architecture** upgrade on the way — pluggable retrieval/orchestration modules and more.
+> - [2026/03] Our new [project homepage](https://ynulihao.github.io/AgentSkillOS/) is now live!
+> - [2026/03] **Benchmark** released — 30 multi-format creative tasks across 5 categories with pairwise Bradley-Terry evaluation.
+> - [2026/03] **Modular Architecture** released — pluggable retrieval/orchestration modules. See [ARCHITECTURE.md](ARCHITECTURE.md) for details.
+> - [2026/03] **Batch CLI** released — headless parallel execution with YAML configs, resume support, and Rich progress UI.
 
 ## 🌐 Overview
 
-
-<div align="center">
-
-</div>
-
 <p align="center" style="font-size: 1.1em;">
-  🔥 <b>The agent skill ecosystem is exploding—over 90,000+</span>skills are now publicly available.</b>
+  🔥 <b>The agent skill ecosystem is exploding—over 200,000+</span>skills are now publicly available.</b>
 </p>
 
 <div align="center">
@@ -60,6 +63,17 @@
   <img src="assets/workflow_en.png" alt="Skill Workflow Overview" style="zoom:90%;" height="454">
 </p>
 
+<p align="center">
+  <sub><b>WEB UI</b> · Visual workflow overview in the browser</sub>
+</p>
+
+<p align="center">
+  <img src="assets/workflow_cli.gif" alt="CLI Workflow Run" style="zoom:80%;" height="380">
+</p>
+
+<p align="center">
+  <sub><b>CLI</b> · Headless execution with terminal progress and logs</sub>
+</p>
 
  ## 🌟 Highlights
 
@@ -69,7 +83,7 @@
 - ⭐ **High-Quality Skill Pool** — A curated collection of high-quality skills, selected based on Claude's implementation, GitHub stars, and download volume.
 - 📊 **Observability & Debugging** — Trace each step with logs and metadata to debug faster and iterate on workflows with confidence.
 - 🧩 **Extensible Skill Registry** — Easily plug in new skills, bring your own skills via a flexible registry.
-
+- 📈 **Benchmark** — 30 multi-format creative tasks across 5 categories, evaluated with pairwise comparison and Bradley-Terry aggregation.
 
 ## 💡 Examples
 
@@ -77,93 +91,52 @@
 
 📊 [**Check out the comparison report: AgentSkillOS vs. without skills →**](comparison_en.md)
 
-### Example 1: Cat Meme Video Generation
+![Case Study](docs/assets/paper_figures/fig_case_study.png)
+> Qualitative comparison between the vanilla baseline and AgentSkillOS Quality-First outputs.
 
-> **Task:**  I'm a short-video creator. Generate a cat meme video featuring a boss (Angry Cat) questioning an employee (Sad Cat) about work progress, with witty responses. Use `video.mp4` (green-screen footage) and `background.jpg`. Requirements: remove green-screen, maintain aspect ratio, add "Boss"/"Employee" labels, sync subtitles with meowing, and create humorous dialogue with viral potential.
-> 
-**Generated Video:**
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=Km4l8ZuIacY">
-    <img src="./assets/meme1_cover_play.png" alt="Watch the video" width="42%">
-  </a>
-   &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.youtube.com/watch?v=9g4OS79tzOo">
-    <img src="./assets/meme2_cover_play.png" alt="Watch the video" width="42%">
-  </a>
-</p>
-
-<!-- **Video Case 1:**
-
-<video src="https://github.com/user-attachments/assets/d4865e44-92cb-4f34-bce8-ee3eda014f6d.mp4" width="20%" controls></video>
-
-**Video Case 2:**
-
-<video src="https://github.com/user-attachments/assets/18360452-5d4f-4139-8733-7d28b85be257.mp4" width="20%" controls></video> -->
-
----
-### Example 2: UI Design Research & Concept Generation
-
-> **Task:**  I'm a product designer planning a knowledge management software. Research products like Notion and Confluence, then create a visual design style report (`report.docx`) with screenshots. Based on the analysis, generate three design concept images (`fusion_design_1/2/3.png`) that synthesize their design characteristics.
-
-**Generated Design Concepts:**
-
-![](assets/case2_ui_design/fusion_design_merged.png)
-
-**Generated Design Style Report:**
-
-![](assets/case2_ui_design/word_UI.png)
-
----
-
-### Example 3: Front-End Bug Diagnosis & Report
-
-> **Task:**  I'm a front-end developer. Users reported a bug when accessing my login page on mobile devices. Please identify and fix the bug, then generate a bug report with before/after screenshots highlighting the issue (For demonstration purposes, the bug screenshot is shown below).
-
-<!-- **Original page with bug:** -->
-
-<p align="center">
-  <img src="assets/case1_bug_report/page_with_bug.png" width="20%" />
-</p>
-
-**Generated bug fix screenshots:**
-
-![](assets/case1_bug_report/before_after_merged.png)
-
-**Generated Bug Report:**
-
-![](assets/case1_bug_report/bug_report_en_merged.png)
-
----
-
-### Example 4: Academic Paper Promotion
-
-> **Task:**  As a PhD student, I've completed a research paper (`Avengers.pdf`) and want to promote it on social media platforms. Help me create promotional materials that effectively present my research findings to a broader audience.
-
-
-**Generated Promotional Materials:**
-
-*Xiaohongshu (RedNote) Post:*
-
-![](assets/case3_paper_promotion/avengers_slides_merged.png)
-
-*Other Social Media Content:*
-
-![](assets/case3_paper_promotion/paper_text_merged.png)
-
-*Scientific Slides:*
-
-![](assets/case3_paper_promotion/scientific_slide.png)
----
+<table>
+<tr>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-bug.html">
+<img src="docs/assets/case1_bug_report/before_after_merged.png" alt="Bug Diagnosis Report" />
+</a>
+<br><b>Example 01 · Bug Diagnosis Report</b>
+<br><sub>Mobile bug localization, fix validation, and visual bug report generation with before/after evidence.</sub>
+</td>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-ui.html">
+<img src="docs/assets/case2_ui_design/fusion_design_merged.png" alt="UI Design Research" />
+</a>
+<br><b>Example 02 · UI Design Research</b>
+<br><sub>Design-language research, report generation, and multi-direction concept mockups for knowledge software.</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-paper.html">
+<img src="docs/assets/case3_paper_promotion/scientific_slide.png" alt="Paper Promotion" />
+</a>
+<br><b>Example 03 · Paper Promotion</b>
+<br><sub>Transforms academic papers into social slides, scientific pages, and platform-specific promotion content.</sub>
+</td>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-video.html">
+<img src="docs/assets/case4_cat_meme/video1.gif" alt="Meme Video" />
+</a>
+<br><b>Example 04 · Meme Video</b>
+<br><sub>Green-screen compositing, subtitle timing, and viral short-video production with multi-version outputs.</sub>
+</td>
+</tr>
+</table>
 
 <!-- 
 > Capability Tree organizes skills hierarchically → Complementarity-aware Retrieval selects diverse skill sets → Graph-based Orchestration executes them as DAG -->
-## 🏗️ Architecture
-- Skill tree construction: Organizes over 90,000+ skills into a capability tree, providing structured, coarse-to-fine access for efficient and creative skill discovery.
+## 🏗️ Method
+- Skill tree construction: Organizes over 200,000+ skills into a capability tree, providing structured, coarse-to-fine access for efficient and creative skill discovery.
 - Skill retrieval: Automatically selects a task-relevant subset of usable skills given a user’s request.
 - Skill orchestration: Composes the selected skills into a coordinated plan (e.g., a DAG-based workflow) to solve tasks beyond the reach of any single skill. Note that we also support a freestyle mode (i.e., Claude Code).
 
-![AgentSkillOS Framework](assets/framework.png)
+![AgentSkillOS Framework](docs/assets/paper_figures/fig_framework.png)
 ### 🌲 Why Skill Tree?
 
 ![Skill Retrieval Comparison](assets/skill_retrieval_academic_comparison.png)
@@ -171,6 +144,66 @@
 >
 > **Right**: Our LLM + Skill Tree navigates the capability hierarchy to surface non-obvious but functionally relevant skills, enabling broader, more creative, and more effective skill composition.
 
+<table>
+<tr>
+<td align="center"><b>200 Skills</b></td>
+<td align="center"><b>1,000 Skills</b></td>
+<td align="center"><b>10,000 Skills</b></td>
+</tr>
+<tr>
+<td><img src="docs/assets/capability_trees/tree_200_expand.gif" width="280"></td>
+<td><img src="docs/assets/capability_trees/tree_1000_expand.gif" width="280"></td>
+<td><img src="docs/assets/capability_trees/tree_10000_expand.gif" width="280"></td>
+</tr>
+</table>
+
+## 📈 Benchmark
+
+We propose a benchmark of **30 multi-format creative tasks** spanning **5 categories**, evaluated via pairwise comparison with Bradley-Terry aggregation.
+
+Three key properties:
+- **Multi-format creative tasks** — Tasks require end-user artifacts in formats such as PDF, PPTX, DOCX, HTML, video, and generated images.
+- **Pairwise evaluation** — Outputs are compared in both orders to reduce position bias and capture reliable preference signals.
+- **Bradley-Terry scores** — Pairwise preferences are aggregated into continuous ranking scores for fine-grained system comparisons.
+
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_benchmark.png" alt="Benchmark Framework" />
+</td>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_task_overview.png" alt="Task Overview" />
+</td>
+</tr>
+</table>
+
+## 🧪 Experiments
+
+Evaluated across 200 / 1K / 200K skill ecosystems, AgentSkillOS demonstrates consistent superiority over baselines, with ablation confirming that both retrieval and orchestration are indispensable, and strategy selection producing structurally distinct execution graphs.
+
+**Key findings:**
+- **Substantial Gains over Baselines at Every Scale** — All three AgentSkillOS variants achieve the highest Bradley-Terry scores across 200 / 1K / 200K ecosystems. The w/ Full Pool baseline scores poorly because a growing fraction of skills becomes invisible — structured retrieval and orchestration overcome this scalability bottleneck.
+- **Ablation: Both Retrieval and Orchestration Are Essential** — Removing components reveals a clear degradation gradient: without DAG orchestration, retrieval alone is insufficient; without retrieval, even oracle skills cannot close the gap. Quality-First shows only a modest deficit versus the oracle upper bound, and the gap narrows as the ecosystem grows.
+- **Strategy Choice Shapes Execution Structure** — Each orchestration strategy faithfully translates its design intent into a distinct DAG topology. Quality-First builds deep, multi-stage pipelines; Efficiency-First trades depth for width to maximize parallelism; Simplicity-First retains only essential steps.
+
+<table>
+<tr>
+<td colspan="2" align="center">
+<img src="docs/assets/paper_figures/fig_radar.png" alt="Category Radar" width="60%" />
+<br><sub><b>Category Radar</b> — Per-category Bradley-Terry performance across ecosystem scales.</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_ablation.png" alt="Ablation Study" width="100%" />
+<br><sub><b>Ablation</b> — Separates retrieval and orchestration effects; confirms both are required.</sub>
+</td>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_dag_metrics.png" alt="DAG Structure Metrics" width="100%" />
+<br><sub><b>DAG Structure Metrics</b> — Different orchestration strategies induce distinct topology profiles.</sub>
+</td>
+</tr>
+</table>
 
 ## 🚀 How to Use
 
@@ -195,8 +228,9 @@ python run.py --port 8765
 | Tree | Skills | Description |
 |------|--------|-------------|
 | 🌱 `skill_seeds` | ~50 | Curated skill set (default) |
-| 📦 `top500` | ~500 | Top 500 from skills.sh |
-| 🗃️ `top1000` | ~1000 | Top 1000 from skills.sh |
+| 📦 `skill_200` | 200 | 200 skills |
+| 🗃️ `skill_1000` | ~1,000 | 1,000 skills |
+| 🏗️ `skill_10000` | ~10,000 | 10,000 active + layered dormant skills |
 
 - [Google Drive](https://drive.google.com/file/d/1IHbnrv9aSnsnMGYHzVTZJ8EtQl0dJfUL/view?usp=sharing) | [Baidu Pan (cei9)](https://pan.baidu.com/s/1Sg_a33PjLbYrBZj4hmsb-w?pwd=cei9)
 
@@ -219,14 +253,84 @@ EMBEDDING_API_KEY=your-key
 
 </details>
 
+<details>
+<summary><b>Batch Execution (Headless CLI)</b></summary>
+
+### Run a Batch
+
+Run multiple tasks in parallel without the Web UI:
+
+```bash
+python run.py cli --task config/batch.yaml
+```
+
+See [`config/eval/`](config/eval/) for ready-made batch configs covering different skill managers (`tree`, `vector`), orchestrators (`dag`, `free-style`), and skill pool sizes.
+
+### Batch Config (YAML)
+
+```yaml
+batch_id: my_batch
+
+defaults:
+  skill_mode: auto          # "auto" (discover) or "specified"
+  skill_group: skill_200    # Which skill pool to use
+  output_dir: ./runs
+  continue_on_error: true
+
+execution:
+  parallel: 2               # Max concurrent tasks
+  retry_failed: 0
+
+tasks:
+  - file: path/to/task1.json
+  - file: path/to/task2.json
+  - dir: path/to/tasks/     # Scan directory
+    pattern: "*.json"
+```
+
+### CLI Flags
+
+| Flag | Description |
+|------|-------------|
+| `--task PATH`, `-T` | Path to batch YAML config (required) |
+| `--parallel N`, `-p` | Override parallel task count |
+| `--resume PATH`, `-R` | Resume an interrupted batch run |
+| `--output-dir PATH`, `-o` | Override output directory |
+| `--dry-run` | Preview tasks without execution |
+| `--verbose`, `-v` | Show detailed logs |
+| `--manager PLUGIN`, `-m` | Override skill manager (e.g., `tree`, `vector`) |
+| `--orchestrator PLUGIN` | Override orchestrator (e.g., `dag`, `free-style`) |
+
+### Resume Interrupted Runs
+
+```bash
+python run.py cli -T config/batch.yaml --resume ./runs/my_batch_20260306_120000
+```
+
+Completed tasks are skipped; only remaining tasks are re-executed.
+
+### Output Structure
+
+```
+./runs/{batch_id}/
+├── batch_result.json          # Batch summary (metrics, costs, eval scores)
+└── {task_id}__{run_id}/       # Per-task directory
+    ├── meta.json
+    ├── result.json
+    ├── evaluation.json
+    └── artifacts/             # Task outputs (PDF, HTML, video, etc.)
+```
+
+</details>
+
 ## 🔮 Future Work
 
+- [x] Recipe Generation & Storage
 - [ ] Interactive Agent Execution
 - [ ] Plan Refinement
 - [ ] Auto Skill Import
 - [ ] Dependency Detection
 - [ ] History Management
-- [ ] Recipe Generation & Storage
 - [ ] Multi-CLI Support (Codex, Gemini CLI, Cursor)
 
 

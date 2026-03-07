@@ -7,7 +7,7 @@
 </p>
 
 <h2 align="center">
-  通过技能<ins>检索</ins>与<ins>编排</ins>，从 90,000+ 技能中构建Agent
+  通过技能<ins>检索</ins>与<ins>编排</ins>，从 200,000+ 技能中构建Agent
 </h2>
 
 
@@ -20,20 +20,23 @@
 
 </p>
 
+<p align="center">
+  <a href="#️-方法"><img src="https://img.shields.io/badge/🏗️_方法-blue?style=for-the-badge" alt="方法"></a>
+  <a href="#-benchmark"><img src="https://img.shields.io/badge/📈_Benchmark-green?style=for-the-badge" alt="Benchmark"></a>
+  <a href="#-示例"><img src="https://img.shields.io/badge/💡_示例-orange?style=for-the-badge" alt="示例"></a>
+  <a href="#-使用方法"><img src="https://img.shields.io/badge/🚀_使用方法-red?style=for-the-badge" alt="使用方法"></a>
+</p>
+
 > **最新动态**
-> - [2026/03] 论文已上线 [Arxiv](https://arxiv.org/abs/2603.02176)！
-> - [2026/03] **Benchmark** 即将发布 — 涵盖 5 大类别的 30 个多格式创意任务，采用 Bradley-Terry 成对评测。
-> - [2026/03] **模块化架构**升级即将上线 — 可插拔的检索/编排模块等新功能。
+> - [2026/03] 我们的新版[项目主页](https://ynulihao.github.io/AgentSkillOS/)现已上线！
+> - [2026/03] **Benchmark** 已发布 — 涵盖 5 大类别的 30 个多格式创意任务，采用 Bradley-Terry 成对评测。
+> - [2026/03] **模块化架构**已上线 — 可插拔的检索/编排模块，详见 [ARCHITECTURE.md](ARCHITECTURE.md)。
+> - [2026/03] **Batch CLI** 已发布 — 支持 YAML 配置的无界面并行批量执行，含断点续跑与 Rich 进度面板。
 
 ## 🌐 概述
 
-
-<div align="center">
-
-</div>
-
 <p align="center" style="font-size: 1.1em;">
-  🔥 <b>Agent技能生态正在爆发式增长——目前已有超过 90,000+ 技能公开可用。</b>
+  🔥 <b>Agent技能生态正在爆发式增长——目前已有超过 200,000+ 技能公开可用。</b>
 </p>
 
 <div align="center">
@@ -58,6 +61,17 @@
   <img src="assets/workflow_zh.png" alt="技能工作流概述" style="zoom:90%;" height="454">
 </p>
 
+<p align="center">
+  <sub><b>WEB UI</b> · 浏览器中的可视化工作流总览</sub>
+</p>
+
+<p align="center">
+  <img src="assets/workflow_cli.gif" alt="CLI 工作流运行" style="zoom:80%;" height="380">
+</p>
+
+<p align="center">
+  <sub><b>CLI</b> · 命令行中的无界面执行、进度与日志</sub>
+</p>
 
  ## 🌟 核心亮点
 
@@ -67,7 +81,7 @@
 - ⭐ **高质量技能池** — 精选的高质量技能集合，基于Claude的实现、GitHub星标数和下载量进行筛选。
 - 📊 **可观测性与调试** — 通过日志和元数据追踪每个步骤，更快地调试并自信地迭代工作流。
 - 🧩 **可扩展技能注册表** — 轻松插入新技能，通过灵活的注册表引入自定义技能。
-
+- 📈 **Benchmark** — 涵盖 5 大类别的 30 个多格式创意任务，采用成对比较与 Bradley-Terry 聚合评测。
 
 ## 💡 示例
 
@@ -75,93 +89,52 @@
 
 📊 [**查看对比报告：AgentSkillOS vs. 无技能 →**](comparison_zh.md)
 
-### 示例 1: 猫咪表情包视频生成
+![Case Study](docs/assets/paper_figures/fig_case_study.png)
+> 原始基线与 AgentSkillOS 质量优先输出的定性对比。
 
-> **任务：** 我是一名短视频创作者。生成一个猫咪表情包视频，展示老板（愤怒猫）质问员工（悲伤猫）工作进度，配上机智的回应。使用 `video.mp4`（绿幕素材）和 `background.jpg`。要求：去除绿幕、保持宽高比、添加"老板"/"员工"标签、字幕与猫叫声同步，并创作具有病毒传播潜力的幽默对话。
->
-**生成的视频：**
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=Km4l8ZuIacY">
-    <img src="./assets/meme1_cover_play.png" alt="Watch the video" width="42%">
-  </a>
-   &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.youtube.com/watch?v=9g4OS79tzOo">
-    <img src="./assets/meme2_cover_play.png" alt="Watch the video" width="42%">
-  </a>
-</p>
-
-<!-- **Video Case 1:**
-
-<video src="https://github.com/user-attachments/assets/d4865e44-92cb-4f34-bce8-ee3eda014f6d.mp4" width="20%" controls></video>
-
-**Video Case 2:**
-
-<video src="https://github.com/user-attachments/assets/18360452-5d4f-4139-8733-7d28b85be257.mp4" width="20%" controls></video> -->
-
----
-### 示例 2: UI设计研究与概念生成
-
-> **任务：** 我是一名产品设计师，正在规划一款知识管理软件。研究Notion和Confluence等产品，然后创建一份包含截图的视觉设计风格报告（`report.docx`）。基于分析，生成三张融合其设计特点的设计概念图（`fusion_design_1/2/3.png`）。
-
-**生成的设计概念：**
-
-![](assets/case2_ui_design/fusion_design_merged.png)
-
-**生成的设计风格报告：**
-
-![](assets/case2_ui_design/word_UI.png)
-
----
-
-### 示例 3: 前端Bug诊断与报告
-
-> **任务：** 我是一名前端开发者。用户反馈在移动设备上访问我的登录页面时出现bug。请识别并修复该bug，然后生成一份包含修复前后截图的bug报告，突出显示问题所在（为演示目的，bug截图如下所示）。
-
-<!-- **Original page with bug:** -->
-
-<p align="center">
-  <img src="assets/case1_bug_report/page_with_bug.png" width="20%" />
-</p>
-
-**生成的bug修复截图：**
-
-![](assets/case1_bug_report/before_after_merged.png)
-
-**生成的Bug报告：**
-
-![](assets/case1_bug_report/bug_report_en_merged.png)
-
----
-
-### 示例 4: 学术论文推广
-
-> **任务：** 作为一名博士生，我完成了一篇研究论文（`Avengers.pdf`），想在社交媒体平台上推广它。帮我创建推广材料，有效地向更广泛的受众展示我的研究成果。
-
-
-**生成的推广材料：**
-
-*小红书帖子：*
-
-![](assets/case3_paper_promotion/avengers_slides_merged.png)
-
-*其他社交媒体内容：*
-
-![](assets/case3_paper_promotion/paper_text_merged.png)
-
-*学术幻灯片：*
-
-![](assets/case3_paper_promotion/scientific_slide.png)
----
+<table>
+<tr>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-bug.html">
+<img src="docs/assets/case1_bug_report/before_after_merged.png" alt="Bug 诊断报告" />
+</a>
+<br><b>示例 01 · Bug 诊断报告</b>
+<br><sub>移动端问题定位、修复验证与可视化 Bug 报告生成（含修复前后证据）。</sub>
+</td>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-ui.html">
+<img src="docs/assets/case2_ui_design/fusion_design_merged.png" alt="UI 设计研究" />
+</a>
+<br><b>示例 02 · UI 设计研究</b>
+<br><sub>面向知识软件的设计语言研究、报告生成与多方向概念稿输出。</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-paper.html">
+<img src="docs/assets/case3_paper_promotion/scientific_slide.png" alt="论文推广" />
+</a>
+<br><b>示例 03 · 论文推广</b>
+<br><sub>将学术论文转译为社交幻灯片、科研页面与平台适配推广内容。</sub>
+</td>
+<td width="50%" align="center">
+<a href="https://ynulihao.github.io/AgentSkillOS/example-video.html">
+<img src="docs/assets/case4_cat_meme/video1.gif" alt="病毒式短视频" />
+</a>
+<br><b>示例 04 · 病毒式短视频</b>
+<br><sub>绿幕合成、字幕时序与多版本病毒式短视频生产。</sub>
+</td>
+</tr>
+</table>
 
 <!--
 > Capability Tree organizes skills hierarchically → Complementarity-aware Retrieval selects diverse skill sets → Graph-based Orchestration executes them as DAG -->
-## 🏗️ 架构
-- 技能树构建：将超过 90,000+ 技能组织成能力树，提供结构化的粗到细访问，实现高效且创造性的技能发现。
+## 🏗️ 方法
+- 技能树构建：将超过 200,000+ 技能组织成能力树，提供结构化的粗到细访问，实现高效且创造性的技能发现。
 - 技能检索：根据用户请求自动选择与任务相关的可用技能子集。
 - 技能编排：将选定的技能组合成协调的计划（例如，基于DAG的工作流），以解决任何单个技能无法完成的任务。注意，我们也支持自由模式（即Claude Code）。
 
-![AgentSkillOS 框架](assets/framework.png)
+![AgentSkillOS 框架](docs/assets/paper_figures/fig_framework.png)
 ### 🌲 为什么使用技能树？
 
 ![技能检索对比](assets/skill_retrieval_academic_comparison.png)
@@ -169,6 +142,66 @@
 >
 > **右图**：我们的LLM + 技能树导航能力层次结构，挖掘出非显而易见但功能相关的技能，实现更广泛、更具创造性和更有效的技能组合。
 
+<table>
+<tr>
+<td align="center"><b>200 技能</b></td>
+<td align="center"><b>1,000 技能</b></td>
+<td align="center"><b>10,000 技能</b></td>
+</tr>
+<tr>
+<td><img src="docs/assets/capability_trees/tree_200_expand.gif" width="280"></td>
+<td><img src="docs/assets/capability_trees/tree_1000_expand.gif" width="280"></td>
+<td><img src="docs/assets/capability_trees/tree_10000_expand.gif" width="280"></td>
+</tr>
+</table>
+
+## 📈 Benchmark
+
+我们提出了一个包含 **30 个多格式创意任务**、涵盖 **5 大类别**的 Benchmark，采用成对比较与 Bradley-Terry 聚合进行评测。
+
+三项核心特性：
+- **多格式创意任务** — 任务要求输出面向终端用户的多格式产物，如 PDF、PPTX、DOCX、HTML、视频与图像。
+- **成对评估** — 结果在双向顺序下比较，以降低位置偏差并获得稳定偏好信号。
+- **Bradley-Terry 评分** — 将成对偏好聚合为连续排名分数，实现细粒度系统对比。
+
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_benchmark.png" alt="Benchmark 框架" />
+</td>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_task_overview.png" alt="任务概览" />
+</td>
+</tr>
+</table>
+
+## 🧪 实验
+
+在 200 / 1K / 200K 三个生态规模下评估，AgentSkillOS 展现出对基线的持续优势；消融实验证实检索与编排缺一不可；策略选择产生结构性不同的执行图。
+
+**核心结论：**
+- **在各规模下均大幅超越基线** — 三个 AgentSkillOS 变体在 200 / 1K / 200K 生态中均获得最高 Bradley-Terry 分数。将全部技能直接提供给 Agent 的 Full Pool 基线表现不佳，因为随着生态扩大，越来越多技能变得不可见——结构化检索与编排克服了这一可扩展性瓶颈。
+- **消融实验：检索与编排缺一不可** — 逐步移除组件呈现清晰的退化梯度：缺少 DAG 编排时，仅靠检索不够；缺少检索时，即使给定 oracle 技能也无法弥补差距。与 oracle 上界对比，Quality-First 仅存微小差距且随生态扩大而缩小，验证了能力树检索可有效逼近 oracle 技能选择。
+- **策略选择决定执行结构** — 每种编排策略都将设计意图忠实映射为不同的 DAG 拓扑。Quality-First 构建深层多阶段流水线；Efficiency-First 以宽度换深度来最大化并行；Simplicity-First 仅保留关键步骤。用户只需选择策略，即可真正控制质量-速度-简洁性的权衡。
+
+<table>
+<tr>
+<td colspan="2" align="center">
+<img src="docs/assets/paper_figures/fig_radar.png" alt="类别雷达图" width="60%" />
+<br><sub><b>类别雷达图</b> — 跨生态规模的类别级 Bradley-Terry 表现，展示稳定且全面的能力覆盖。</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_ablation.png" alt="消融实验" width="100%" />
+<br><sub><b>消融实验</b> — 拆分检索与编排贡献，验证两者都不可缺失。</sub>
+</td>
+<td width="50%" align="center">
+<img src="docs/assets/paper_figures/fig_dag_metrics.png" alt="DAG 结构指标" width="100%" />
+<br><sub><b>DAG 结构指标</b> — 不同编排策略对应不同拓扑特征（深度、宽度、边数、节点数）。</sub>
+</td>
+</tr>
+</table>
 
 ## 🚀 使用方法
 
@@ -193,8 +226,9 @@ python run.py --port 8765
 | 技能树 | 技能数量 | 描述 |
 |------|--------|-------------|
 | 🌱 `skill_seeds` | ~50 | 精选技能集（默认） |
-| 📦 `top500` | ~500 | skills.sh 前500 |
-| 🗃️ `top1000` | ~1000 | skills.sh 前1000 |
+| 📦 `skill_200` | 200 | 200 个技能 |
+| 🗃️ `skill_1000` | ~1,000 | 1,000 个技能 |
+| 🏗️ `skill_10000` | ~10,000 | 10,000 个活跃技能 + 分层休眠技能 |
 
 - [Google Drive](https://drive.google.com/file/d/1IHbnrv9aSnsnMGYHzVTZJ8EtQl0dJfUL/view?usp=sharing) | [百度网盘 (cei9)](https://pan.baidu.com/s/1Sg_a33PjLbYrBZj4hmsb-w?pwd=cei9)
 
@@ -217,14 +251,83 @@ EMBEDDING_API_KEY=your-key
 
 </details>
 
-## 🔮 未来计划
+<details>
+<summary><b>批量执行（无界面 CLI）</b></summary>
 
+### 运行批量任务
+
+无需 Web UI，并行执行多个任务：
+
+```bash
+python run.py cli --task config/batch.yaml
+```
+
+参见 [`config/eval/`](config/eval/) 获取预置的批量配置，涵盖不同的技能管理器（`tree`、`vector`）、编排器（`dag`、`free-style`）和技能池规模。
+
+### 批量配置（YAML）
+
+```yaml
+batch_id: my_batch
+
+defaults:
+  skill_mode: auto          # "auto"（自动发现）或 "specified"（指定技能）
+  skill_group: skill_200    # 使用的技能池
+  output_dir: ./runs
+  continue_on_error: true
+
+execution:
+  parallel: 2               # 最大并行任务数
+  retry_failed: 0
+
+tasks:
+  - file: path/to/task1.json
+  - file: path/to/task2.json
+  - dir: path/to/tasks/     # 扫描目录
+    pattern: "*.json"
+```
+
+### CLI 参数
+
+| 参数 | 说明 |
+|------|------|
+| `--task PATH`, `-T` | 批量 YAML 配置文件路径（必填） |
+| `--parallel N`, `-p` | 覆盖并行任务数 |
+| `--resume PATH`, `-R` | 从中断的批次续跑 |
+| `--output-dir PATH`, `-o` | 覆盖输出目录 |
+| `--dry-run` | 仅预览，不实际执行 |
+| `--verbose`, `-v` | 显示详细日志 |
+| `--manager PLUGIN`, `-m` | 覆盖技能管理器（如 `tree`、`vector`） |
+| `--orchestrator PLUGIN` | 覆盖编排器（如 `dag`、`free-style`） |
+
+### 断点续跑
+
+```bash
+python run.py cli -T config/batch.yaml --resume ./runs/my_batch_20260306_120000
+```
+
+已完成的任务将被跳过，仅重新执行剩余任务。
+
+### 输出结构
+
+```
+./runs/{batch_id}/
+├── batch_result.json          # 批次汇总（指标、费用、评测分数）
+└── {task_id}__{run_id}/       # 每个任务的目录
+    ├── meta.json
+    ├── result.json
+    ├── evaluation.json
+    └── artifacts/             # 任务产物（PDF、HTML、视频等）
+```
+
+</details>
+
+## 🔮 未来计划
+- [x] 配方生成与存储
 - [ ] 交互式Agent执行
 - [ ] 计划优化
 - [ ] 自动技能导入
 - [ ] 依赖检测
 - [ ] 历史管理
-- [ ] 配方生成与存储
 - [ ] 多CLI支持（Codex、Gemini CLI、Cursor）
 
 

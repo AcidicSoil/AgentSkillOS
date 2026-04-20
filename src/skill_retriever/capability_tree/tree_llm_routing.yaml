@@ -1,0 +1,97 @@
+id: root
+name: Root
+description: Skill capability tree root
+children:
+- id: development
+  name: Development
+  description: This category provides tools for managing and hardening LLM API integrations, including configuration validation,
+    response sanitization, and intelligent routing. It addresses developer needs for building resilient backends that handle
+    tool-calling errors and manage account quotas across multiple providers. Users should look here when setting up or optimizing
+    the infrastructure for AI-powered applications.
+  skills:
+  - id: gemini-tool-output-sanitizer
+    name: gemini-tool-output-sanitizer
+    description: '<!-- path: data/llm_routing/gemini-tool-output-sanitizer/SKILL.md -->
+
+      ---
+
+      name: Harden tool-calling for Gemini-style outputs
+
+      description: Reduce tool errors by forcing strict JSON, adding output guards, and applying repair/retry logic for non-conforming
+      tool calls.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/llm_routing/gemini-tool-output-sanitizer/SKILL.md
+    content: "<!-- path: data/llm_routing/gemini-tool-output-sanitizer/SKILL.md -->\n---\nname: Harden tool-calling for Gemini-style\
+      \ outputs\ndescription: Reduce tool errors by forcing strict JSON, adding output guards, and applying repair/retry logic\
+      \ for non-conforming tool calls.\n---\n\n## When to use\n- Tool calls intermittently fail due to malformed JSON, wrong\
+      \ fields, or mixed prose + JSON.\n- A Gemini-backed model behaves differently than Claude/OpenAI style tool calling.\n\
+      \n## Inputs\n- tool schema (function name + args schema)\n- model output that should contain tool call args\n- retry\
+      \ budget (default: 2)\n\n## Outputs\n- A \"tool-output guard\" plan:\n  - strict JSON mode prompt block\n  - validation\
+      \ rules\n  - repair strategy (re-ask with the invalid snippet)\n- A wrapper pattern for agents to apply consistently\n\
+      \n## Procedure\n1. Force a single-channel structured output:\n   - demand: \"Return ONLY valid JSON object. No markdown.\
+      \ No prose.\"\n2. Validate output:\n   - parse JSON\n   - check required keys + types\n   - reject extra top-level keys\
+      \ when strict\n3. Repair attempt (1):\n   - feed back the invalid output\n   - ask for corrected JSON only\n4. Repair\
+      \ attempt (2):\n   - ask model to emit args using an explicit example object template\n5. Fail closed:\n   - stop and\
+      \ surface validation errors verbosely\n\n## Validation\n- Parsed JSON passes schema checks before calling the tool.\n\
+      \n## Notes\n- Treat \"almost JSON\" as failure; do not best-effort guess args."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: openai-compatible-proxy-config
+    name: openai-compatible-proxy-config
+    description: '<!-- path: data/llm_routing/openai-compatible-proxy-config/SKILL.md -->
+
+      ---
+
+      name: Validate OpenAI-compatible proxy configuration
+
+      description: Check base_url, headers, auth, and model naming for OpenAI-compatible APIs (local proxies, routers, gateways).
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/llm_routing/openai-compatible-proxy-config/SKILL.md
+    content: "<!-- path: data/llm_routing/openai-compatible-proxy-config/SKILL.md -->\n---\nname: Validate OpenAI-compatible\
+      \ proxy configuration\ndescription: Check base_url, headers, auth, and model naming for OpenAI-compatible APIs (local\
+      \ proxies, routers, gateways).\n---\n\n## When to use\n- Tools fail with auth errors, 404 model not found, or tool-calling\
+      \ mismatches.\n- You are routing through a proxy endpoint instead of the native provider.\n\n## Inputs\n- `base_url`\n\
+      - `api_key`\n- target `model` string(s)\n- optional proxy-specific headers\n\n## Outputs\n- A verified configuration\
+      \ block:\n  - base_url correctness (v1 path, trailing slash handling)\n  - auth header mapping\n  - model naming conventions\
+      \ + examples\n- A minimal `curl` test command set (chat + models list)\n\n## Procedure\n1. Confirm endpoint shape:\n\
+      \   - should expose `/v1/models` and `/v1/chat/completions` (or equivalents)\n2. Confirm auth expectations:\n   - `Authorization:\
+      \ Bearer ...` vs custom header\n3. Confirm model naming:\n   - whether proxy expects `provider/model` or raw provider\
+      \ ids\n4. Produce smoke tests:\n   - list models\n   - 1-turn chat completion\n   - tool call request (if supported)\n\
+      \n## Validation\n- `models` call succeeds.\n- `chat` call succeeds with the exact model string you plan to use."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: quota-aware-fallback-routing
+    name: quota-aware-fallback-routing
+    description: '<!-- path: data/llm_routing/quota-aware-fallback-routing/SKILL.md -->
+
+      ---
+
+      name: Quota-aware fallback routing strategy
+
+      description: Decide when to switch models/accounts based on remaining quota, tool requirements, and failure modes.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/llm_routing/quota-aware-fallback-routing/SKILL.md
+    content: "<!-- path: data/llm_routing/quota-aware-fallback-routing/SKILL.md -->\n---\nname: Quota-aware fallback routing\
+      \ strategy\ndescription: Decide when to switch models/accounts based on remaining quota, tool requirements, and failure\
+      \ modes.\n---\n\n## When to use\n- You have multiple accounts/providers and want automatic fallback.\n- You want to\
+      \ avoid burning high-tier quota on low-value steps.\n\n## Inputs\n- quota signals per provider/account (percent remaining\
+      \ + reset time)\n- task requirements:\n  - tool calling needed?\n  - long context needed?\n  - reliability vs cost preference\n\
+      \n## Outputs\n- A routing decision matrix:\n  - primary model per task type\n  - downgrade/upgrade conditions\n  - forced\
+      \ routing for \"must succeed\" steps\n- A minimal policy spec usable by a router component\n\n## Procedure\n1. Categorize\
+      \ steps:\n   - planning, retrieval, transformation, tool-calling, verification\n2. Assign default model tiers:\n   -\
+      \ cheap for planning/retrieval\n   - reliable for tool-calling/verification\n3. Apply quota rules:\n   - if near reset\
+      \ and quota remains: spend on high-value reliability steps\n   - if far from reset and low remaining: downgrade aggressively\n\
+      4. Apply failure rules:\n   - repeated tool JSON failures => switch to a stricter tool-calling model\n5. Emit a deterministic\
+      \ policy (no ambiguity).\n\n## Validation\n- Same inputs produce same routing choice.\n- Tool-required steps never select\
+      \ a model known to break tool output."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''

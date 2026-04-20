@@ -1,0 +1,103 @@
+id: root
+name: Root
+description: Skill capability tree root
+children:
+- id: development
+  name: Development
+  description: This category provides tools for project discovery, script generation, and building structured manifests for
+    agentic workflows. Users should look here when they need to scan local codebases for application types or standardize
+    project commands into consistent CLI wrappers and tool registries.
+  skills:
+  - id: generate-cli-wrapper
+    name: generate-cli-wrapper
+    description: '<!-- path: data/project_toolifier/generate-cli-wrapper/SKILL.md -->
+
+      ---
+
+      name: Create a consistent CLI wrapper for a project tool
+
+      description: Build a small wrapper script that standardizes invocation, logging, cwd, env, and outputs for a project
+      command.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/project_toolifier/generate-cli-wrapper/SKILL.md
+    content: "<!-- path: data/project_toolifier/generate-cli-wrapper/SKILL.md -->\n---\nname: Create a consistent CLI wrapper\
+      \ for a project tool\ndescription: Build a small wrapper script that standardizes invocation, logging, cwd, env, and\
+      \ outputs for a project command.\n---\n\n## When to use\n- A project has a useful command but it's messy (needs env,\
+      \ cwd, extra steps).\n- You want tools to behave consistently across many repos.\n\n## Inputs\n- One tool entry from\
+      \ `tool_manifest.json`\n- Wrapper target: `scripts/tools/<tool_id>` (recommended)\n\n## Outputs\n- Executable wrapper\
+      \ script that:\n  - validates args\n  - sets working directory\n  - exports required env vars (or errors if missing)\n\
+      \  - writes logs to `artifacts/logs/<tool_id>.log`\n  - returns non-zero on failure\n\n## Procedure\n1. Decide wrapper\
+      \ type:\n   - bash for simple forwarding\n   - python for complex arg parsing + structured outputs\n2. Implement:\n\
+      \   - `set -euo pipefail` (bash) or strict exceptions (python)\n   - arg parsing that matches the manifest schema\n\
+      \   - consistent logging + timestamps\n3. Run a smoke test:\n   - minimal args, confirm exit code + artifacts\n4. Add\
+      \ a `--help` output that matches the manifest.\n\n## Validation\n- Wrapper runs from anywhere (does not rely on current\
+      \ shell state).\n- Logs are written even on failure."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: generate-tool-manifest
+    name: generate-tool-manifest
+    description: '<!-- path: data/project_toolifier/generate-tool-manifest/SKILL.md -->
+
+      ---
+
+      name: Generate a tool manifest from the inventory
+
+      description: Convert an inventory into a consistent tool registry (names, args, contracts) usable by agents and tool
+      servers.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/project_toolifier/generate-tool-manifest/SKILL.md
+    content: "<!-- path: data/project_toolifier/generate-tool-manifest/SKILL.md -->\n---\nname: Generate a tool manifest from\
+      \ the inventory\ndescription: Convert an inventory into a consistent tool registry (names, args, contracts) usable by\
+      \ agents and tool servers.\n---\n\n## When to use\n- You already have `project_inventory.json`.\n- You need a single\
+      \ source of truth for \"what tools exist\" and how to call them.\n\n## Inputs\n- `project_inventory.json`\n- `naming_policy`:\
+      \ kebab-case tool names, stable prefixes, collision handling\n- `default_timeout_s`, `default_cwd_policy`\n\n## Outputs\n\
+      - `tool_manifest.json` with:\n  - tool id, title, description\n  - command template (or module entrypoint)\n  - args\
+      \ schema (name/type/required/default)\n  - environment requirements (vars, files, ports)\n  - timeout + working directory\
+      \ rules\n  - expected artifacts (files written)\n\n## Procedure\n1. Normalize tool naming:\n   - `tool_id = <project>-<capability>`\
+      \ with collision suffixes when needed.\n2. For each project, pick 1–3 top entrypoints to expose as tools:\n   - prefer\
+      \ deterministic commands with clear inputs/outputs\n3. Define argument schema:\n   - map flags/positional args to a\
+      \ JSON schema-like structure\n4. Define contracts:\n   - what files are created, where logs go, exit codes\n5. Emit\
+      \ a manifest that is \"agent-friendly\":\n   - concise descriptions\n   - strict, machine-parseable arg definitions\n\
+      \n## Validation\n- Every manifest tool references an existing project path.\n- Command template is runnable in a clean\
+      \ shell with declared env vars.\n\n## Notes\n- Keep the manifest stable; tool ids should not churn across runs."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: scan-projects
+    name: scan-projects
+    description: '<!-- path: data/project_toolifier/scan-projects/SKILL.md -->
+
+      ---
+
+      name: Scan local projects into an inventory
+
+      description: Walk a projects/ directory, detect app types (python/node/docker/etc.), and output a structured inventory
+      for toolification.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/project_toolifier/scan-projects/SKILL.md
+    content: "<!-- path: data/project_toolifier/scan-projects/SKILL.md -->\n---\nname: Scan local projects into an inventory\n\
+      description: Walk a projects/ directory, detect app types (python/node/docker/etc.), and output a structured inventory\
+      \ for toolification.\n---\n\n## When to use\n- You have a monorepo or `~/projects` folder with many subprojects.\n-\
+      \ You need an inventory to decide what is worth turning into callable tools.\n\n## Inputs\n- `root_dir`: directory to\
+      \ scan (default: `~/projects`)\n- `max_depth`: recursion depth (default: 3)\n- Optional filters: include/exclude globs\n\
+      \n## Outputs\n- `project_inventory.json` containing:\n  - project path\n  - language/runtime signals (pyproject, package.json,\
+      \ go.mod, Cargo.toml, etc.)\n  - entrypoints (Makefile targets, scripts, docker compose, CLI bins)\n  - \"toolability\"\
+      \ score + recommended wrapper type\n\n## Procedure\n1. Enumerate immediate subdirectories under `root_dir`.\n2. For\
+      \ each project, detect signals:\n   - Python: `pyproject.toml`, `requirements.txt`, `uv.lock`\n   - Node: `package.json`,\
+      \ `pnpm-lock.yaml`, `yarn.lock`\n   - Docker: `Dockerfile`, `docker-compose.yml`\n   - CLI: `bin/`, `scripts/`, `Makefile`,\
+      \ `justfile`\n3. Extract candidate entrypoints:\n   - `make help`, `just --list`, `npm run`, `uv run`, `python -m ...`\
+      \ patterns\n4. Assign a wrapper recommendation:\n   - \"shell wrapper\" if it's already a CLI/script\n   - \"python\
+      \ wrapper\" if it needs env + module execution\n   - \"docker wrapper\" if it's container-first\n5. Emit `project_inventory.json`\
+      \ sorted by toolability score.\n\n## Validation\n- Inventory includes every scanned repo (count matches directory listing).\n\
+      - Each repo has at least one detected signal or is marked \"unknown\".\n\n## Failure modes\n- Repos with nested apps:\
+      \ increase `max_depth`.\n- Missing permissions: skip and record error per-project."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''

@@ -36,6 +36,23 @@ core:
     base_delay: 1.0
     max_retries: 3
 
+# Max parallel searches
+# (Number of concurrent search branches)
+search_max_parallel: 5
+
+# LLM temperature
+# (Controls LLM output randomness)
+# Range: 0.0-1.0, lower = more deterministic, higher = more creative
+search_temperature: 1
+
+# Search timeout
+# (Timeout for search operations, in seconds)
+search_timeout: 600.0
+
+# Search response caching
+# (Cache LLM responses during search)
+search_caching: true
+
 # =============================================================================
 # Manager Plugins
 # =============================================================================

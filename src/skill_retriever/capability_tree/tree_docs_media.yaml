@@ -1,0 +1,95 @@
+id: root
+name: Root
+description: Skill capability tree root
+children:
+- id: content-creation
+  name: Content Creation
+  description: This category focuses on tools for authoring professional documents and visual assets. It includes skills for
+    generating structured UI research reports and creating annotated images for bug reviews or design feedback. Users should
+    look here when they need to produce high-quality deliverables or document visual information.
+  skills:
+  - id: design-research-report-docx
+    name: design-research-report-docx
+    description: '<!-- path: data/docs_media/design-research-report-docx/SKILL.md -->
+
+      ---
+
+      name: Produce a UI design research report (DOCX)
+
+      description: Research comparable products, capture screenshots, extract design tokens, and write a structured report.docx.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/docs_media/design-research-report-docx/SKILL.md
+    content: "<!-- path: data/docs_media/design-research-report-docx/SKILL.md -->\n---\nname: Produce a UI design research\
+      \ report (DOCX)\ndescription: Research comparable products, capture screenshots, extract design tokens, and write a\
+      \ structured report.docx.\n---\n\n## When to use\n- You need a doc artifact (DOCX) summarizing UI patterns and design\
+      \ language.\n- You are comparing products (e.g., Notion vs Confluence) for synthesis.\n\n## Inputs\n- product list (names\
+      \ + URLs if available)\n- target sections (typography, color, layout, components)\n- screenshot list (or a capture plan)\n\
+      \n## Outputs\n- `report.docx` with:\n  - screenshots + captions\n  - token tables (colors, type scale, spacing)\n  -\
+      \ pattern analysis (navigation, hierarchy, density)\n  - synthesis recommendations\n\n## Procedure\n1. Define evaluation\
+      \ rubric (5–10 criteria).\n2. Collect screenshots for key flows (home, editor, search, settings).\n3. Extract tokens:\n\
+      \   - primary/secondary colors, neutrals\n   - font sizes/weights\n   - spacing and component radius/shadows\n4. Write\
+      \ findings per product, then synthesis section.\n5. Add an appendix: screenshot index + notes.\n\n## Validation\n- Report\
+      \ includes screenshots (not just text).\n- Recommendations are tied to observed patterns."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: screenshot-annotator
+    name: screenshot-annotator
+    description: '<!-- path: data/docs_media/screenshot-annotator/SKILL.md -->
+
+      ---
+
+      name: Annotate screenshots for bug reports or reviews
+
+      description: Mark issues on screenshots with clear callouts, numbered labels, and short captions; output annotated images
+      + a summary.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/docs_media/screenshot-annotator/SKILL.md
+    content: "<!-- path: data/docs_media/screenshot-annotator/SKILL.md -->\n---\nname: Annotate screenshots for bug reports\
+      \ or reviews\ndescription: Mark issues on screenshots with clear callouts, numbered labels, and short captions; output\
+      \ annotated images + a summary.\n---\n\n## When to use\n- Bug reports need \"before/after\" visual evidence.\n- You\
+      \ want a consistent annotation style for review artifacts.\n\n## Inputs\n- one or more images (png/jpg)\n- list of annotations:\n\
+      \  - bbox/region description\n  - label text\n  - severity (optional)\n\n## Outputs\n- `annotated_<name>.png` per input\n\
+      - `annotations.md` summarizing each marker\n\n## Procedure\n1. For each image, define 1–6 markers max (avoid clutter).\n\
+      2. Use consistent numbering and short labels.\n3. Ensure contrast and readability at 100% zoom.\n4. Export annotated\
+      \ images.\n5. Write a short markdown summary linking marker numbers to explanations.\n\n## Validation\n- Markers are\
+      \ legible and unambiguous.\n- Summary matches marker numbers exactly."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+- id: data-processing
+  name: Data Processing
+  description: This category addresses goals related to the aggregation, normalization, and transformation of information.
+    It includes skills that synthesize content from multiple sources into organized formats like digests. Look here when you
+    need to consolidate large amounts of text-based data for discovery or brainstorming.
+  skills:
+  - id: readme-digest
+    name: readme-digest
+    description: '<!-- path: data/docs_media/readme-digest/SKILL.md -->
+
+      ---
+
+      name: Create a README digest across many repos
+
+      description: Aggregate many README.md files, normalize structure, and produce a single digest for discovery and brainstorming.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/docs_media/readme-digest/SKILL.md
+    content: "<!-- path: data/docs_media/readme-digest/SKILL.md -->\n---\nname: Create a README digest across many repos\n\
+      description: Aggregate many README.md files, normalize structure, and produce a single digest for discovery and brainstorming.\n\
+      ---\n\n## When to use\n- You have many repos and need a fast \"what do we have?\" view.\n- You want to spot duplicated\
+      \ capabilities and gaps.\n\n## Inputs\n- root directory containing repos\n- digest format:\n  - \"one file per repo\"\
+      \ or \"single consolidated file\"\n- optional rename convention\n\n## Outputs\n- `readme_digest/` or `README_DIGEST.md`\
+      \ containing:\n  - repo name\n  - 5–10 line summary\n  - key commands\n  - dependencies and runtime\n  - \"tool candidates\"\
+      \ (entrypoints worth wrapping)\n\n## Procedure\n1. Locate README files at repo roots.\n2. Extract:\n   - purpose\n \
+      \  - setup/run commands\n   - inputs/outputs\n3. Normalize into a standard template per repo.\n4. Add an index at top\
+      \ with quick links.\n5. Add \"tool candidates\" section based on detected commands.\n\n## Validation\n- Digest includes\
+      \ all repos with a README.\n- Each entry has at least purpose + how-to-run."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''

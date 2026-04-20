@@ -1,0 +1,91 @@
+id: root
+name: Root
+description: Skill capability tree root
+children:
+- id: development
+  name: Development
+  description: Provides essential tools for local environment troubleshooting, infrastructure debugging, and service management.
+    These skills help users diagnose container networking, resolve system port conflicts, and package diagnostic data for
+    technical support. This is the primary destination for developers needing to stabilize their development setup or investigate
+    low-level system issues.
+  skills:
+  - id: collect-debug-bundle
+    name: collect-debug-bundle
+    description: '<!-- path: data/local_devops/collect-debug-bundle/SKILL.md -->
+
+      ---
+
+      name: Collect a reproducible debug bundle
+
+      description: Gather logs, configs, versions, and minimal repro steps into a single artifact for fast debugging and escalation.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/local_devops/collect-debug-bundle/SKILL.md
+    content: "<!-- path: data/local_devops/collect-debug-bundle/SKILL.md -->\n---\nname: Collect a reproducible debug bundle\n\
+      description: Gather logs, configs, versions, and minimal repro steps into a single artifact for fast debugging and escalation.\n\
+      ---\n\n## When to use\n- Intermittent failures, proxy issues, tool errors.\n- You need a shareable bundle without leaking\
+      \ secrets.\n\n## Inputs\n- project root path\n- services involved (docker compose, uv, node, python)\n- timeframe for\
+      \ logs (last N minutes)\n\n## Outputs\n- `debug_bundle/` containing:\n  - `repro_steps.md`\n  - `env_redacted.txt`\n\
+      \  - `versions.txt`\n  - `docker_ps.txt`, `docker_logs_*.txt` (if applicable)\n  - app logs (bounded)\n  - config snapshots\
+      \ (non-secret)\n\n## Procedure\n1. Capture versions:\n   - python/uv/node/docker/git + OS info\n2. Capture configs:\n\
+      \   - include config files; redact keys/tokens\n3. Capture logs with bounds:\n   - last N lines only\n4. Write minimal\
+      \ repro:\n   - exact commands + expected vs actual\n5. Pack:\n   - tar/zip bundle directory\n\n## Validation\n- Bundle\
+      \ contains enough to reproduce without private secrets."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: docker-network-debug
+    name: docker-network-debug
+    description: '<!-- path: data/local_devops/docker-network-debug/SKILL.md -->
+
+      ---
+
+      name: Debug docker networking between containers
+
+      description: Diagnose container-to-container connectivity, DNS/service-name resolution, ports, and host access from
+      containers.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/local_devops/docker-network-debug/SKILL.md
+    content: "<!-- path: data/local_devops/docker-network-debug/SKILL.md -->\n---\nname: Debug docker networking between containers\n\
+      description: Diagnose container-to-container connectivity, DNS/service-name resolution, ports, and host access from\
+      \ containers.\n---\n\n## When to use\n- One container cannot reach another by service name.\n- Confusion between `host.docker.internal`\
+      \ vs compose service DNS.\n\n## Inputs\n- docker compose file (services + networks)\n- source container, target container/service,\
+      \ target port\n\n## Outputs\n- Root cause classification:\n  - wrong network\n  - wrong hostname/service name\n  - port\
+      \ not exposed vs not published\n  - firewall/iptables\n- Exact fixes (compose network wiring + correct base URLs)\n\n\
+      ## Procedure\n1. Confirm same network:\n   - `docker network inspect <net>` and check both containers\n2. DNS check\
+      \ inside source container:\n   - `getent hosts <service>` or `nslookup <service>`\n3. Connectivity check:\n   - `curl\
+      \ -v http://<service>:<port>/health`\n   - `nc -vz <service> <port>`\n4. Distinguish:\n   - *exposed* (internal) vs\
+      \ *published* (host)\n5. Apply fixes:\n   - use `http://<compose_service>:<port>` for container-to-container\n   - use\
+      \ `http://host.docker.internal:<port>` for container-to-host (when supported)\n\n## Validation\n- Health endpoint reachable\
+      \ from source container consistently."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''
+  - id: port-process-audit
+    name: port-process-audit
+    description: '<!-- path: data/local_devops/port-process-audit/SKILL.md -->
+
+      ---
+
+      name: Identify and resolve port/process conflicts
+
+      description: Find what is listening on a port in WSL/Linux, map to process/container, and cleanly stop or rebind it.
+
+      ---'
+    skill_path: /home/user/projects/temp/ai-apps/AgentSkillOS/data/local_devops/port-process-audit/SKILL.md
+    content: "<!-- path: data/local_devops/port-process-audit/SKILL.md -->\n---\nname: Identify and resolve port/process conflicts\n\
+      description: Find what is listening on a port in WSL/Linux, map to process/container, and cleanly stop or rebind it.\n\
+      ---\n\n## When to use\n- \"Address already in use\" errors.\n- A service won't start, or docker ports won't bind.\n\n\
+      ## Inputs\n- `port` (tcp/udp)\n- context: native process vs docker vs systemd\n\n## Outputs\n- The owning PID/container\n\
+      - A safe stop plan (terminate, systemctl, docker stop)\n- Optional rebind plan (pick alternative port + update config)\n\
+      \n## Procedure\n1. Identify listener:\n   - `ss -ltnp | grep :<port>` (tcp) / `ss -lunp` (udp)\n   - fallback: `lsof\
+      \ -i :<port>`\n2. Map to service:\n   - if docker: `docker ps --format ...` + published ports\n   - if systemd: `systemctl\
+      \ status <unit>`\n3. Stop cleanly:\n   - systemd stop > docker stop > kill (last resort)\n4. Confirm freed:\n   - rerun\
+      \ `ss`/`lsof`\n\n## Validation\n- Port no longer appears in listeners.\n- Service starts successfully after remediation."
+    github_url: ''
+    stars: 0
+    is_official: false
+    author: ''

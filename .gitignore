@@ -209,3 +209,7 @@ scripts/cleanup-affected-tasks.sh
 scripts/cleanup-rerun-checkpoints.sh
 scripts/rerun-affected-tasks.sh
 scripts/generate_tree_gifs.py
+.gitnexus
+.archived
+
+
